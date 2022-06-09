@@ -3,7 +3,7 @@ import Navigation from './routes/Navigation';
 const App = () => {
   return (
     <>
-      <Navigation></Navigation>
+      <Navigation />
     </>
   );
 };

@@ -9,7 +9,7 @@ import styles from '../styles/styles.module.css';
 export const ProductContext = createContext( {} as IProductContextProperties );
 const { Provider } = ProductContext;
 
-const ProductCard = ( { children, product }: IProductCardProperties ) => {
+const ProductCard = ( { children, product, className, style }: IProductCardProperties ) => {
 
     const { counter, increaseBy } = useProduct();
 
@@ -19,7 +19,10 @@ const ProductCard = ( { children, product }: IProductCardProperties ) => {
             increaseBy,
             product
         } }>
-            <div className={ styles.productCard }>
+            <div
+                className={ `${ styles.productCard } ${ className }` }
+                style={ style }
+            >
                 { children }
             </div>
         </Provider>

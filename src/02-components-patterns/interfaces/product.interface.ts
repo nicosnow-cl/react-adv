@@ -9,6 +9,8 @@ export interface IProductCardProperties {
     className?: string;
     product: IProduct;
     style?: CSSProperties;
+    onChange?: ( args: IOnChangeArgs ) => void;
+    value?: number;
 }
 
 export interface IProduct {
@@ -28,4 +30,13 @@ export interface IProductCardHOC {
     Buttons: ( Props: IProductButtons ) => JSX.Element;
     Image: ( Props: IProductImage ) => JSX.Element;
     Title: ( Props: IProductTitle ) => JSX.Element;
+}
+
+export interface IOnChangeArgs {
+    product: IProduct;
+    count: number;
+}
+
+export interface IProductInCart extends IProduct {
+    count: number;
 }

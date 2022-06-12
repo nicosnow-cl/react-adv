@@ -9,30 +9,17 @@ const useShoppingCart = () => {
 
     const onProductCountChange = ( { count, product }: { count: number, product: IProduct; } ) => {
         setShoppingCart( ( oldShoppingCart ) => {
-            const productInCart: IProductInCart = oldShoppingCart[ product.id ] || { ...product, count: 0 };
-
-            if ( Math.max( productInCart.count + count, 0 ) > 0 ) {
-                productInCart.count += count;
+            if ( count !== 0 ) {
                 return {
                     ...oldShoppingCart,
-                    [ product.id ]: productInCart
+                    [ product.id ]: { ...product, count }
                 };
             }
 
-            const { [ product.id ]: toDelete, ...rest } = oldShoppingCart;
-            return rest;
-
-            // if ( count !== 0 ) {
-            //     return {
-            //         ...oldShoppingCart,
-            //         [ product.id ]: { ...product, count }
-            //     };
-            // }
-
-            // delete oldShoppingCart[ product.id ];
-            // return {
-            //     ...oldShoppingCart
-            // };
+            delete oldShoppingCart[ product.id ];
+            return {
+                ...oldShoppingCart
+            };
         } );
     };
 

@@ -51,7 +51,7 @@ export interface IInitialValues {
 
 export interface IProductCardHandlers {
     count: number;
-    isMaxCountReached?: boolean;
+    isMaxCountReached: boolean;
     maxCount?: number;
     product: IProduct;
     increaseBy: ( value: number ) => void;

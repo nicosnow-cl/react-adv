@@ -15,9 +15,10 @@ const useProduct = ( { onChange, product, value = 0, initialValues }: IUseProduc
     const isMountedRef = useRef( false );
 
     const increaseBy = ( value: number ): void => {
-        if ( initialValues?.maxCount && value > 0 && counter >= initialValues?.maxCount ) return;
+        if ( !!initialValues?.maxCount && value > 0 && counter >= initialValues?.maxCount ) return;
 
-        const newValue = Math.max( counter + value, 0 );
+        let newValue = Math.max( counter + value, 0 );
+        if ( !!initialValues?.maxCount && newValue > initialValues?.maxCount ) newValue = initialValues?.maxCount;
         setCounter( newValue );
 
         onChange && onChange( { product, count: newValue } );

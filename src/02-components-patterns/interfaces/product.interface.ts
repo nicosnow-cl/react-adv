@@ -5,12 +5,14 @@ import { IProductImage } from '../components/ProductImage';
 import { IProductTitle } from '../components/ProductTitle';
 
 export interface IProductCardProperties {
-    children?: ReactElement | ReactElement[];
+    // children?: ReactElement | ReactElement[];
     className?: string;
     product: IProduct;
     style?: CSSProperties;
-    onChange?: ( args: IOnChangeArgs ) => void;
     value?: number;
+    initialValues?: IInitialValues;
+    children?: ( args: IProductCardHandlers ) => JSX.Element;
+    onChange?: ( args: IOnChangeArgs ) => void;
 }
 
 export interface IProduct {
@@ -21,8 +23,9 @@ export interface IProduct {
 
 export interface IProductContextProperties {
     counter: number;
-    increaseBy: ( value: number ) => void;
+    maxCount?: number;
     product: IProduct;
+    increaseBy: ( value: number ) => void;
 }
 
 export interface IProductCardHOC {
@@ -39,4 +42,18 @@ export interface IOnChangeArgs {
 
 export interface IProductInCart extends IProduct {
     count: number;
+}
+
+export interface IInitialValues {
+    count?: number;
+    maxCount?: number;
+}
+
+export interface IProductCardHandlers {
+    count: number;
+    isMaxCountReached?: boolean;
+    maxCount?: number;
+    product: IProduct;
+    increaseBy: ( value: number ) => void;
+    reset: () => void;
 }
